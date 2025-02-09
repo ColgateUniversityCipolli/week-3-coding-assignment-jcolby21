@@ -51,7 +51,27 @@ to this \texttt{.Rnw} file.\\
 % Write your answer and explanations here.
 
 <<size="scriptsize", warning=F, message=F>>=
-# Copy your solution code here.
+blakesnumbers <- c(6, 10, 14, 15, 21, 22, 26, 33, 34, 35, 38, 39, 46, 
+                   51, 55, 57, 58, 62, 65, 69, 75, 77, 82, 85, 86, 
+                   87, 91, 93, 94, 95)
+primes <- c(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 
+            41, 43, 47)  # all prime numbers less than 50
+uniqueproducts <- vector()  # empty vector to store unique products
+
+for (i in 1:length(primes)) {
+  for (j in (i+1):length(primes)) {  # start the second loop at i+1 to avoid duplicates
+    product = primes[i] * primes[j]  # calculate the product
+    if (!is.na(product) && product < 100) {  # only include products less than 100
+      uniqueproducts = c(uniqueproducts, product)  # add the product to the vector
+    }
+  }
+}
+(uniqueproducts=sort(uniqueproducts))
+numbers_not_in_uniqueproducts = setdiff(blakesnumbers, uniqueproducts) #finds incorrect number in blakes numbers
+numbers_not_in_blakesnumbers =setdiff(uniqueproducts, blakesnumbers) #finds number that needs to be put into blakes numbers to correct error
+#The number 75 should be replaced by 74 since 75 is not the product of 
+#two unique prime numbers, 75=3*5*5 whereas 74 is the product of two 
+#prime numbers, 74=2*37
 @
 \end{enumerate}
 
